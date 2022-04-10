@@ -1,0 +1,16 @@
+<div class="container">
+  <%= form_with url: root_path, method: :get do |form| %>
+    <%= form.text_field :user_id, placeholder: "Enter your Flickr ID", id: "search-field" %>
+    <%= form.submit "Search Photos", id: "search-button" %>
+  <% end %>
+  
+  <h1>Your Flickr Photos</h1>
+
+  <div class="photos-container">
+    <% unless params[:user_id].blank? %>
+      <% @photos.each do |photo| %>
+        <div><img src="<%= Flickr.url_n(photo) %>"/></div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
